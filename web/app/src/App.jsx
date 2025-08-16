@@ -1,0 +1,100 @@
+import { useState } from 'react';
+import './App.css';
+
+// ① 複数の問題を配列として用意する
+const quizzes = [
+  {
+    id: 1,
+    text: (
+      <div>
+        <p>【第1問】</p>
+        <p>ボールペンと消しゴムは、合わせて110円。</p>
+        <p>ボールペンは消しゴムより100円高い。</p>
+        <p>では、消しゴムの値段は？</p>
+      </div>
+    ),
+  },
+  {
+    id: 2,
+    text: (
+      <div>
+        <p>【第2問】</p>
+        <p>社員4人で作業して、4日で4つ生産できる商品がある。</p>
+        <p>この商品を100日で100個つくるには、</p>
+        <p>最低何人の社員が必要？</p>
+      </div>
+    ),
+  },
+  {
+    id: 3,
+    text: (
+      <div>
+        <p>【第3問】</p>
+        <p>あるイベントで、開始時は観客が1人だったが、</p>
+        <p>1分ごとに2倍に増え、12分で会場が満員になった。</p>
+        <p>観客が会場のちょうど半分を占めたのは、</p>
+        <p>開始から何分後？</p>
+      </div>
+    ),
+  },
+  {
+    id: 4,
+    text: (
+      <div>
+        <p>【論理的思考 第1問 難易度：★】</p>
+        <p>あなたの前に3人の村人がいる。</p>
+        <p>1人は天使、1人は悪魔、1人は人間。</p>
+        <p>天使はかならず真実を言い、悪魔はかならず嘘をつき、</p>
+        <p>人間はランダムに真実や嘘を言う。</p>
+        <p></p>
+        <p>3人の村人（A,B,C）は次のように言った。</p>
+        <p>村人A：私は天使ではない。
+           村人B：私は悪魔ではない。
+           村人C：私は人間ではない。</p>
+        <p></p>
+        <p>それぞれの村人のたちの正体は？</p>
+      </div>
+    ),
+  },
+];
+
+function App() {
+  // ② 表示する問題の「番号」を記憶する状態 (最初は-1で「問題です」画面)
+  const [currentIndex, setCurrentIndex] = useState(-1);
+
+  // ③ クリックされたら、次の問題の番号に更新する関数
+  const handleClick = () => {
+    // (現在の番号 + 1) を 問題の総数で割った余り を次の番号にする
+    // これで、最後まで行くと0に戻るループが実現できる
+    setCurrentIndex(prevIndex => (prevIndex + 1) % quizzes.length);
+  };
+
+  return (
+    <>
+      <div 
+        onClick={handleClick}
+        className="quiz-container"
+        style={{
+          cursor: 'pointer',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          textAlign: 'center',
+          width: '90%',
+        }}
+      >
+        {/* ④ currentIndexの値によって表示を切り替える */}
+        {currentIndex === -1 ? (
+          // 初期表示 (-1のとき)
+          <h1 className="yusei-magic-regular">問題です。</h1>
+        ) : (
+          // 問題表示 (-1以外のとき)
+          quizzes[currentIndex].text
+        )}
+      </div>
+    </>
+  );
+}
+
+export default App;

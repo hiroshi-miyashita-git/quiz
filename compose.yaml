@@ -1,0 +1,12 @@
+services:
+  app:
+    image          : node:24-bullseye-slim
+    container_name : react
+    working_dir    : /app
+    command        : bash -c "yarn dev --host"
+    volumes:
+      - ./web/app:/app
+    ports:
+      - "80:5173"
+
+# docker compose run --rm -it app bash -c 'yarn create vite ./ --template react && yarn'
