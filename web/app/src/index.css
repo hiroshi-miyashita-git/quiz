@@ -71,14 +71,28 @@ button:focus-visible {
   font-weight: 400;
   font-style: normal;
 }
-.quiz-container {
+/* .quiz-container {
   font-family: "Yusei Magic", sans-serif;
   font-size: 2rem;
   line-height: 1.5;
 }
 .quiz-container h1 {
   font-size: 4rem;
+} */
+.quiz-container {
+  font-family: "Yusei Magic", sans-serif;
 }
+
+.quiz-container h1 {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+}
+
+.quiz-container p {
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  line-height: 1.5;
+}
+
+
 .fixed-header {
   position: fixed;
   top: 0;

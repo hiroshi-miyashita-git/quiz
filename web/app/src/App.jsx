@@ -57,7 +57,7 @@ const quizzes = [
     ),
   },
   {
-    id: 4,
+    id: 5,
     text: (
       <div>
 <p>【論理的思考 第２問 難易度：★】</p>
